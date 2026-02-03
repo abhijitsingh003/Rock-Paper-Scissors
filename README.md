@@ -3,7 +3,7 @@
 A modern, high-energy twist on the classic game! Built with vanilla HTML, CSS, and JavaScript, this project features a **Best of 3 Series** format, smooth animations, and a vibrant neon aesthetic.
 
 <div align="center">
-  <img src="preview_3.png" alt="Landing Page" width="100%" style="border-radius: 10px; margin-bottom: 20px;">
+  <img src="1.png" alt="Neon Rock Paper Scissors Preview" width="100%" style="border-radius: 10px; margin-bottom: 20px;">
 </div>
 
 
