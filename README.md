@@ -1,4 +1,4 @@
-# 🎮 Neon Rock Paper Scissors
+# 🎮 Rock Paper Scissors
 
 A modern, high-energy twist on the classic game! Built with vanilla HTML, CSS, and JavaScript, this project features a **Best of 3 Series** format, smooth animations, and a vibrant neon aesthetic.
 
