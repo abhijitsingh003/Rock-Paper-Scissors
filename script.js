@@ -264,19 +264,30 @@ function resetBoard() {
 const playerScoreVal = document.getElementById('player-score-val');
 const cpuScoreVal = document.getElementById('cpu-score-val');
 
+const VERSION = "1.5 - Restored Stable";
+
 function updateScoreBoard() {
     if (playerScoreVal) playerScoreVal.textContent = stats.wins;
     if (cpuScoreVal) cpuScoreVal.textContent = stats.losses; // CPU wins = My losses
+    console.log("Score updated:", stats);
 }
 
 function saveStats() {
-    localStorage.setItem('rps-stats', JSON.stringify(stats));
+    try {
+        localStorage.setItem('rps-stats', JSON.stringify(stats));
+    } catch (e) {
+        console.warn("Could not save stats to localStorage", e);
+    }
 }
 
 function loadStats() {
-    const saved = localStorage.getItem('rps-stats');
-    if (saved) {
-        stats = JSON.parse(saved);
+    try {
+        const saved = localStorage.getItem('rps-stats');
+        if (saved) {
+            stats = JSON.parse(saved);
+        }
+    } catch (e) {
+        console.warn("Could not load stats from localStorage", e);
     }
 }
 
@@ -299,3 +310,4 @@ function resetScore() {
 }
 
 init();
+console.log("RPS Game Initialized - Version:", VERSION);
