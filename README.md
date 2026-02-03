@@ -2,9 +2,22 @@
 
 A modern, high-energy twist on the classic game! Built with vanilla HTML, CSS, and JavaScript, this project features a **Best of 3 Series** format, smooth animations, and a vibrant neon aesthetic.
 
-![Game Preview 1](preview_1.png)
-![Game Preview 2](preview_2.png)
-![Game Preview 3](preview_3.png)
+<div align="center">
+  <img src="preview_3.png" alt="Landing Page" width="100%" style="border-radius: 10px; margin-bottom: 20px;">
+</div>
+
+<div align="center">
+  <table>
+    <tr>
+      <td width="50%">
+        <img src="preview_1.png" alt="Result Screen" width="100%" style="border-radius: 10px;">
+      </td>
+      <td width="50%">
+        <img src="preview_2.png" alt="Gameplay" width="100%" style="border-radius: 10px;">
+      </td>
+    </tr>
+  </table>
+</div>
 
 ## ✨ Features
 
