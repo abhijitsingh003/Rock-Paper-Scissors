@@ -47,5 +47,5 @@ A clean, modern implementation of the classic game! Built with vanilla HTML, CSS
 
 ---
 
-## https://rpc-self.vercel.app/ 
+### https://rps-abzt.vercel.app/
 *Enjoy the game! 🕹️*
