@@ -2,8 +2,9 @@
 
 A modern, high-energy twist on the classic game! Built with vanilla HTML, CSS, and JavaScript, this project features a **Best of 3 Series** format, smooth animations, and a vibrant neon aesthetic.
 
-![Game Preview](https://via.placeholder.com/800x400?text=Neon+Rock+Paper+Scissors+Preview)
-*(Replace with actual screenshot)*
+![Game Preview 1](preview_1.png)
+![Game Preview 2](preview_2.png)
+![Game Preview 3](preview_3.png)
 
 ## ✨ Features
 
