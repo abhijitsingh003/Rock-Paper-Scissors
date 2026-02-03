@@ -6,18 +6,7 @@ A modern, high-energy twist on the classic game! Built with vanilla HTML, CSS, a
   <img src="preview_3.png" alt="Landing Page" width="100%" style="border-radius: 10px; margin-bottom: 20px;">
 </div>
 
-<div align="center">
-  <table>
-    <tr>
-      <td width="50%">
-        <img src="preview_1.png" alt="Result Screen" width="100%" style="border-radius: 10px;">
-      </td>
-      <td width="50%">
-        <img src="preview_2.png" alt="Gameplay" width="100%" style="border-radius: 10px;">
-      </td>
-    </tr>
-  </table>
-</div>
+
 
 ## ✨ Features
 
