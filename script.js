@@ -73,19 +73,33 @@ function playRound(playerChoice) {
 
     const result = determineWinner(playerChoice, cpuChoice);
 
-    // 5. Wait for animation
+    // 5. Wait for animation - OPACITY SWAP FIX
     setTimeout(() => {
-        // Stop shaking
+        // 1. Hide hands instantly to mask the "Static Rock" frame
+        playerHandImg.style.transition = 'none'; // Ensure no fade duration
+        cpuHandImg.style.transition = 'none';
+        playerHandImg.style.opacity = '0';
+        cpuHandImg.style.opacity = '0';
+
+        // 2. Stop shaking
         playerHandImg.classList.remove('shake-left');
         cpuHandImg.classList.remove('shake-right');
 
-        // Show actual hands
+        // 3. Swap Images (Happens while invisible)
         playerHandImg.src = assets[playerChoice].img;
         playerHandImg.dataset.choice = playerChoice;
-        playerHandImg.parentElement.classList.add('pop-hand'); // Bounce effect
 
         cpuHandImg.src = assets[cpuChoice].img;
         cpuHandImg.dataset.choice = cpuChoice;
+
+        // 4. Force Browser Reflow (Ensure the swap is painted in logic)
+        void playerHandImg.offsetWidth;
+
+        // 5. Show Hands & Pop
+        playerHandImg.style.opacity = '1';
+        cpuHandImg.style.opacity = '1';
+
+        playerHandImg.parentElement.classList.add('pop-hand');
         cpuHandImg.parentElement.classList.add('pop-hand');
 
         // Show result text and button (remove invisible)
@@ -153,7 +167,7 @@ function playRound(playerChoice) {
 
         updateScoreBoard();
         saveStats();
-    }, 1300); // 1.3s delay (0.5+0.5+0.3)
+    }, 900); // 900ms: Reveal slightly earlier for snap
 }
 
 function determineWinner(p, c) {
@@ -251,9 +265,37 @@ const playerScoreVal = document.getElementById('player-score-val');
 const cpuScoreVal = document.getElementById('cpu-score-val');
 
 function updateScoreBoard() {
-    // New Landing Page Stats
     if (playerScoreVal) playerScoreVal.textContent = stats.wins;
     if (cpuScoreVal) cpuScoreVal.textContent = stats.losses; // CPU wins = My losses
+}
+
+function saveStats() {
+    localStorage.setItem('rps-stats', JSON.stringify(stats));
+}
+
+function loadStats() {
+    const saved = localStorage.getItem('rps-stats');
+    if (saved) {
+        stats = JSON.parse(saved);
+    }
+}
+
+function resetScore() {
+    stats = { wins: 0, losses: 0, draws: 0 };
+    updateScoreBoard();
+    saveStats();
+
+    // Explicit cleanup since resetBoard only cleans on series end
+    if (typeof confettiId !== 'undefined' && confettiId) cancelAnimationFrame(confettiId);
+    particles = [];
+    if (ctx) ctx.clearRect(0, 0, canvas.width, canvas.height);
+    if (resultTitle) resultTitle.classList.remove('pop-animate');
+
+    // Reset Play Again button text if needed
+    const playAgainBtn = document.querySelector('.play-again-btn');
+    if (playAgainBtn) playAgainBtn.textContent = "Play Again";
+
+    resetBoard();
 }
 
 init();
