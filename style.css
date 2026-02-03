@@ -1,0 +1,437 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap');
+
+:root {
+    --bg-color: #ffffff;
+    --text-color: #000000;
+    --text-secondary: #555555;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Fredoka', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    overflow-x: hidden;
+    /* Prevent horizontal scroll only */
+    overflow-y: auto;
+    /* Allow vertical scroll */
+}
+
+.app-container {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    min-height: 100vh;
+    /* Allow growing */
+    justify-content: space-between;
+    padding: 2rem 0;
+}
+
+/* Header */
+header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+h1 {
+    font-size: 4rem;
+    margin-bottom: 0.5rem;
+}
+
+h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+/* Game Area */
+.game-area {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+/* Selection Phase */
+/* Selection Phase */
+.selection-phase {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    /* Reduced from 4rem */
+    width: 100%;
+    flex: 1;
+    justify-content: center;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.header-score {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 1rem;
+    background: white;
+    padding: 1rem 2rem;
+    border-radius: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.score-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 80px;
+}
+
+.score-label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: #888;
+    margin-bottom: 0.25rem;
+}
+
+.score-val {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.player-score .score-val {
+    color: #22c55e;
+}
+
+.cpu-score .score-val {
+    color: #ef4444;
+}
+
+.score-vs {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #cbd5e1;
+}
+
+.mini-reset-btn {
+    background: #f1f5f9;
+    border: none;
+    color: #94a3b8;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-left: 1rem;
+}
+
+.mini-reset-btn:hover {
+    background: #e2e8f0;
+    color: #64748b;
+    transform: rotate(90deg);
+}
+
+#confetti-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 999;
+}
+
+.hands-container {
+    display: flex;
+    gap: 3rem;
+    /* Reduced from 5rem to bring hands closer to center */
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 1rem;
+}
+
+.choice-option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    /* Bouncy hover */
+    background: none;
+    border: none;
+}
+
+.choice-option:hover {
+    transform: scale(1.1) translateY(-10px);
+    /* Lift effect */
+}
+
+.choice-option img {
+    height: 250px;
+    width: auto;
+    object-fit: contain;
+    mix-blend-mode: multiply;
+}
+
+.choice-label {
+    font-size: 3rem;
+    font-weight: 600;
+    margin-top: 1rem;
+}
+
+/* Result Phase */
+.result-phase {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    animation: fadeIn 0.5s ease-out;
+    justify-content: center;
+    flex: 1;
+    /* Take available space but don't force overflow */
+}
+
+.result-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    margin-top: -2rem;
+}
+
+.result-title {
+    font-size: 5rem;
+    font-weight: 700;
+    display: block;
+}
+
+.result-subtitle {
+    font-size: 3rem;
+    color: var(--text-secondary);
+    display: block;
+    margin-top: 0.5rem;
+}
+
+.duel-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10rem;
+    margin-bottom: 4rem;
+}
+
+.hand-display {
+    display: flex;
+    align-items: center;
+}
+
+.hand-display img {
+    height: 350px;
+    width: auto;
+    mix-blend-mode: multiply;
+    /* Blends white background to transparent */
+}
+
+/* Rotate hands for face-off */
+.player-hand img {
+    transform: rotate(90deg);
+}
+
+.cpu-hand img {
+    transform: scaleX(-1) rotate(90deg);
+}
+
+
+/* Footer / Scoreboard */
+/* New Footer Layout */
+.footer-container {
+    display: none;
+    /* Hidden completely as requested */
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    width: 100%;
+    margin-bottom: 3rem;
+}
+
+.footer-score {
+    font-size: 2rem;
+    color: #555;
+    font-weight: 500;
+    display: flex;
+    gap: 3rem;
+    /* Wider spacing between Won/Lost/Draw */
+    align-items: center;
+}
+
+.total-score {
+    font-size: 1.5rem;
+    color: #888;
+    margin-top: 0.5rem;
+    display: none;
+    /* Removed */
+}
+
+.reset-btn {
+    background: #f1f5f9;
+    border: 1px solid #cbd5e1;
+    color: #64748b;
+    padding: 0.8rem 1.5rem;
+    /* Larger touch target */
+    border-radius: 8px;
+    /* Softer corners */
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 1rem;
+    transition: all 0.2s;
+    margin-top: 1rem;
+    /* Extra separation from total score */
+    display: none;
+    /* Removed */
+}
+
+.reset-btn:hover {
+    background: #e2e8f0;
+    color: #334155;
+    transform: translateY(-2px);
+}
+
+.play-again-btn {
+    margin-top: 3rem;
+    /* More space from hands */
+    margin-bottom: 2rem;
+    /* Push footer down */
+    background: #22c55e;
+    color: white;
+    border: none;
+    padding: 1rem 4rem;
+    /* Wider button */
+    font-size: 1.8rem;
+    /* Larger text */
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);
+    /* Softer shadow */
+    transition: transform 0.2s, box-shadow 0.2s;
+    font-family: 'Fredoka', sans-serif;
+}
+
+.play-again-btn:hover {
+    transform: scale(1.05);
+    background: #16a34a;
+}
+
+/* Utility */
+.hidden {
+    display: none !important;
+}
+
+.invisible {
+    visibility: hidden;
+    opacity: 0;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Shake Animation for hands */
+.shake-left {
+    animation: shakeLeft 0.433s ease-in-out 3;
+    /* Faster rhythm to fit 1.3s total */
+    transform-origin: 20% 80%;
+    /* Pivot around wrist */
+}
+
+.shake-right {
+    animation: shakeRight 0.433s ease-in-out 3;
+    transform-origin: 80% 80%;
+}
+
+@keyframes shakeLeft {
+    0% {
+        transform: rotate(90deg);
+    }
+
+    50% {
+        transform: rotate(60deg);
+    }
+
+    /* Cock back */
+    100% {
+        transform: rotate(90deg);
+    }
+
+    /* Slam forward */
+}
+
+@keyframes shakeRight {
+    0% {
+        transform: scaleX(-1) rotate(90deg);
+    }
+
+    50% {
+        transform: scaleX(-1) rotate(60deg);
+    }
+
+    100% {
+        transform: scaleX(-1) rotate(90deg);
+    }
+}
+
+/* Pop In Animation for Series End */
+@keyframes popIn {
+    0% {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+
+    50% {
+        transform: scale(1.2);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.pop-animate {
+    animation: popIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+/* Back Button */
+.back-btn {
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+    background: none;
+    border: none;
+    text-decoration: underline;
+    color: blue;
+}

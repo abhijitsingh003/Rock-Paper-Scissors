@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="app-container">
+
+        <!-- Header is dynamic depending on phase, or simpler: -->
+        <!-- We will put the specific 'Choose:' text inside the phase containers -->
+
+        <main class="game-area">
+            <!-- Phase 1: Selection -->
+            <!-- Phase 1: Selection -->
+            <div id="selection-phase" class="selection-phase">
+                <div class="header-score">
+                    <div class="score-box player-score">
+                        <span class="score-label">YOU</span>
+                        <span id="player-score-val" class="score-val">0</span>
+                    </div>
+                    <div class="score-vs">VS</div>
+                    <div class="score-box cpu-score">
+                        <span class="score-label">CPU</span>
+                        <span id="cpu-score-val" class="score-val">0</span>
+                    </div>
+                    <button class="mini-reset-btn" onclick="resetScore()" aria-label="Reset Score">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+                            <path d="M3 3v5h5"></path>
+                        </svg>
+                    </button>
+                </div>
+                <h1>Choose:</h1>
+
+                <div class="hands-container">
+                    <button class="choice-option" onclick="playRound('stone')">
+                        <img src="hand_rock.png" alt="Rock">
+                        <span class="choice-label">Rock</span>
+                    </button>
+                    <button class="choice-option" onclick="playRound('paper')">
+                        <img src="hand_paper.png" alt="Paper">
+                        <span class="choice-label">Paper</span>
+                    </button>
+                    <button class="choice-option" onclick="playRound('scissors')">
+                        <img src="hand_scissors.png" alt="Scissors">
+                        <span class="choice-label">Scissors</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Phase 2: Result -->
+            <div id="result-phase" class="result-phase hidden">
+
+                <div class="result-header">
+                    <span id="result-title" class="result-title">You Win!</span>
+                    <span id="result-subtitle" class="result-subtitle">Paper beats Rock!</span>
+                </div>
+
+                <div class="duel-container">
+                    <div class="hand-display player-hand">
+                        <img id="player-hand-img" src="hand_rock.png" alt="Player Hand">
+                    </div>
+
+                    <div class="hand-display cpu-hand">
+                        <img id="cpu-hand-img" src="hand_rock.png" alt="CPU Hand">
+                    </div>
+                </div>
+
+                <button class="play-again-btn" onclick="resetBoard()">Play Again</button>
+            </div>
+        </main>
+
+        <footer class="footer-container">
+            <div class="footer-score">
+                <span>Won: <span id="wins">0</span></span>
+                <!-- <span class="score-divider">|</span> -->
+                <span>Lost: <span id="losses">0</span></span>
+                <!-- <span class="score-divider">|</span> -->
+                <span>Draw: <span id="draws">0</span></span>
+            </div>
+            <div class="total-score">
+                Total Games Played: <span id="total-games">0</span>
+            </div>
+            <button class="reset-btn" onclick="resetScore()">Reset Score</button>
+        </footer>
+    </div>
+
+    <canvas id="confetti-canvas"></canvas>
+    <script src="script.js"></script>
+</body>
+
+</html>
