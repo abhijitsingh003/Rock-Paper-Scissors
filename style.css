@@ -209,7 +209,8 @@ h2 {
 
 .result-header {
     text-align: center;
-    margin-bottom: 3rem;
+    margin-bottom: 1.5rem;
+    /* Reduced to make room for double-line subtitle */
     margin-top: -2rem;
 }
 
@@ -230,8 +231,11 @@ h2 {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 10rem;
-    margin-bottom: 4rem;
+    gap: 5rem;
+    /* Reduced from 10rem to bring hands closer */
+    margin-bottom: 2rem;
+    /* Reduced from 4rem */
+    margin-top: 1rem;
 }
 
 .hand-display {
@@ -240,10 +244,10 @@ h2 {
 }
 
 .hand-display img {
-    height: 350px;
+    height: 300px;
+    /* Slightly smaller to fit better */
     width: auto;
     mix-blend-mode: multiply;
-    /* Blends white background to transparent */
 }
 
 /* Rotate hands for face-off */
@@ -255,77 +259,33 @@ h2 {
     transform: scaleX(-1) rotate(90deg);
 }
 
+/* Fix Paper Orientation (Thumb needs to be up) */
+.player-hand img[data-choice="paper"] {
+    transform: rotate(90deg) scaleX(-1);
+}
+
+.cpu-hand img[data-choice="paper"] {
+    /* Rotate -90 (CCW) -> Points Left. 
+       If Thumb was Right (Up), it rotates to Top (Up). */
+    transform: rotate(-90deg);
+}
+
 
 /* Footer / Scoreboard */
-/* New Footer Layout */
-.footer-container {
-    display: none;
-    /* Hidden completely as requested */
-    flex-direction: column;
-    align-items: center;
-    gap: 2rem;
-    width: 100%;
-    margin-bottom: 3rem;
-}
-
-.footer-score {
-    font-size: 2rem;
-    color: #555;
-    font-weight: 500;
-    display: flex;
-    gap: 3rem;
-    /* Wider spacing between Won/Lost/Draw */
-    align-items: center;
-}
-
-.total-score {
-    font-size: 1.5rem;
-    color: #888;
-    margin-top: 0.5rem;
-    display: none;
-    /* Removed */
-}
-
-.reset-btn {
-    background: #f1f5f9;
-    border: 1px solid #cbd5e1;
-    color: #64748b;
-    padding: 0.8rem 1.5rem;
-    /* Larger touch target */
-    border-radius: 8px;
-    /* Softer corners */
-    cursor: pointer;
-    font-family: inherit;
-    font-size: 1rem;
-    transition: all 0.2s;
-    margin-top: 1rem;
-    /* Extra separation from total score */
-    display: none;
-    /* Removed */
-}
-
-.reset-btn:hover {
-    background: #e2e8f0;
-    color: #334155;
-    transform: translateY(-2px);
-}
+/* Footer removed as requested */
 
 .play-again-btn {
-    margin-top: 3rem;
-    /* More space from hands */
+    margin-top: 1rem;
+    /* Reduced top margin */
     margin-bottom: 2rem;
-    /* Push footer down */
     background: #22c55e;
     color: white;
     border: none;
     padding: 1rem 4rem;
-    /* Wider button */
     font-size: 1.8rem;
-    /* Larger text */
     border-radius: 50px;
     cursor: pointer;
     box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);
-    /* Softer shadow */
     transition: transform 0.2s, box-shadow 0.2s;
     font-family: 'Fredoka', sans-serif;
 }
@@ -423,6 +383,34 @@ h2 {
     animation: popIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
 }
 
+@keyframes popHand {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+
+    /* More subtle bounce */
+    100% {
+        transform: scale(1);
+    }
+}
+
+.pop-hand {
+    animation: popHand 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Fix Scissor Size (Too small compared to paper) */
+.player-hand img[data-choice="scissors"] {
+    transform: rotate(90deg) scale(1.2);
+}
+
+.cpu-hand img[data-choice="scissors"] {
+    transform: scaleX(-1) rotate(90deg) scale(1.2);
+}
+
 /* Back Button */
 .back-btn {
     position: absolute;
@@ -434,4 +422,105 @@ h2 {
     border: none;
     text-decoration: underline;
     color: blue;
+}
+
+.series-score {
+    display: inline-block;
+    /* background: #fff; Removed to fix 'square' overlay issue */
+    padding: 0;
+    /* Removed padding */
+    /* box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08); Removed */
+    font-weight: 700;
+    margin-left: 0.25rem;
+    /* Reduced from 0.5rem */
+    vertical-align: middle;
+    font-size: 1em;
+    border: none;
+}
+
+.series-score.win {
+    color: #22c55e;
+    border-color: #22c55e;
+}
+
+.series-score.lose {
+    color: #ef4444;
+    border-color: #ef4444;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    .app-container {
+        padding: 1rem 0;
+    }
+
+    .header-score {
+        padding: 0.5rem 1rem;
+        gap: 1rem;
+        width: 90%;
+        justify-content: center;
+    }
+
+    .score-val {
+        font-size: 1.5rem;
+    }
+
+    .hands-container {
+        gap: 1rem;
+    }
+
+    .choice-option img {
+        height: 120px;
+    }
+
+    .choice-label {
+        font-size: 1.5rem;
+        margin-top: 0.5rem;
+    }
+
+    .duel-container {
+        gap: 2rem;
+        /* Reduce gap for mobile */
+    }
+
+    .hand-display img {
+        height: 150px;
+        /* Resize face-off hands */
+    }
+
+    .result-header {
+        margin-bottom: 2rem;
+    }
+
+    .result-title {
+        font-size: 3rem;
+    }
+
+    .result-subtitle {
+        font-size: 1.2rem;
+    }
+
+    .series-score {
+        padding: 0.1rem 0.5rem;
+    }
+
+    .play-again-btn {
+        padding: 0.8rem 2rem;
+        font-size: 1.2rem;
+        width: 80%;
+    }
+
+    .back-btn {
+        top: 1rem;
+        left: 1rem;
+        font-size: 1rem;
+    }
 }
