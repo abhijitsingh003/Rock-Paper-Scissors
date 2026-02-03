@@ -73,44 +73,50 @@ function playRound(playerChoice) {
 
     const result = determineWinner(playerChoice, cpuChoice);
 
-    // 5. Frame-Perfect Fix: Stop Shake -> Hide -> Swap -> Reveal
+    // 5. Transform Freeze Fix: Freeze -> Hide -> Swap -> Release
     setTimeout(() => {
-        // 1. Stop shaking first
-        playerHandImg.classList.remove('shake-left');
-        cpuHandImg.classList.remove('shake-right');
+        // 1. Freeze transform at current pixel
+        const pT = getComputedStyle(playerHandImg).transform;
+        const cT = getComputedStyle(cpuHandImg).transform;
+        playerHandImg.style.transform = pT;
+        cpuHandImg.style.transform = cT;
 
-        // 2. Hide hands
-        playerHandImg.style.transition = 'none'; // Ensure instant hide
+        // 2. Hide immediately
+        playerHandImg.style.transition = 'none';
         cpuHandImg.style.transition = 'none';
         playerHandImg.style.opacity = '0';
         cpuHandImg.style.opacity = '0';
 
-        // 3. Force NEXT frame
+        // 3. Next Frame
         requestAnimationFrame(() => {
+            playerHandImg.classList.remove('shake-left');
+            cpuHandImg.classList.remove('shake-right');
 
-            // Swap images while invisible
             playerHandImg.src = assets[playerChoice].img;
-            playerHandImg.dataset.choice = playerChoice;
+            playerHandImg.dataset.choice = playerChoice; // Update choice for styling
 
             cpuHandImg.src = assets[cpuChoice].img;
             cpuHandImg.dataset.choice = cpuChoice;
 
-            // 4. Force ONE MORE frame (Safari needs this)
+            // 4. One more frame (Safari/Mobile safe)
             requestAnimationFrame(() => {
+                // Release transform control
+                playerHandImg.style.transform = '';
+                cpuHandImg.style.transform = '';
 
-                // Reveal hands
+                // Reveal
                 playerHandImg.style.opacity = '1';
                 cpuHandImg.style.opacity = '1';
 
                 playerHandImg.parentElement.classList.add('pop-hand');
                 cpuHandImg.parentElement.classList.add('pop-hand');
 
-                // Reveal text + button
+                // UI
                 resultTitle.classList.remove('invisible');
                 resultSubtitle.classList.remove('invisible');
                 if (playAgainBtn) playAgainBtn.classList.remove('invisible');
 
-                // Continue with result logic
+                // Logic
                 if (result === 'win') stats.wins++;
                 else if (result === 'lose') stats.losses++;
                 else stats.draws++;
@@ -120,27 +126,21 @@ function playRound(playerChoice) {
                     resultTitle.classList.add('pop-animate');
                     if (stats.wins > stats.losses) {
                         resultTitle.textContent = "VICTORY!";
-                        resultTitle.style.color = "#22c55e"; // Green
+                        resultTitle.style.color = "#22c55e";
                         resultSubtitle.innerHTML = `You won the match!<br><span style="font-size: 0.6em; display: block; margin-top: 5px; color: #666;">Final Score: <span class="series-score win">${stats.wins} - ${stats.losses}</span></span>`;
                         runConfetti();
                     } else if (stats.losses > stats.wins) {
                         resultTitle.textContent = "DEFEAT!";
-                        resultTitle.style.color = "#ef4444"; // Red
+                        resultTitle.style.color = "#ef4444";
                         resultSubtitle.innerHTML = `Better luck next time!<br><span style="font-size: 0.6em; display: block; margin-top: 5px; color: #666;">Final Score: <span class="series-score lose">${stats.wins} - ${stats.losses}</span></span>`;
                     } else {
                         resultTitle.textContent = "DRAW!";
-                        resultTitle.style.color = "#334155"; // Tie
+                        resultTitle.style.color = "#334155";
                         resultSubtitle.textContent = "It's a tie game!";
                     }
-
-                    // Change button to Start New Game
                     if (playAgainBtn) playAgainBtn.textContent = "New Game";
-
                 } else {
-                    // Normal Round Result Logic
-                    resultTitle.classList.remove('pop-animate'); // Ensure no pop for normal rounds
-
-                    // Show series progress on button
+                    resultTitle.classList.remove('pop-animate');
                     if (playAgainBtn) playAgainBtn.textContent = `Next Round (${totalDecisive}/3)`;
 
                     if (result === 'win') {
