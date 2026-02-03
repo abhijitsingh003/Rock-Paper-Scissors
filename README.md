@@ -1,9 +1,9 @@
 # 🎮 Rock Paper Scissors
 
-A modern, high-energy twist on the classic game! Built with vanilla HTML, CSS, and JavaScript, this project features a **Best of 3 Series** format, smooth animations, and a vibrant neon aesthetic.
+A clean, modern implementation of the classic game! Built with vanilla HTML, CSS, and JavaScript, this project features a **Best of 3 Series** format, smooth animations, and a polished user interface.
 
 <div align="center">
-  <img src="1.png" alt="Neon Rock Paper Scissors Preview" width="100%" style="border-radius: 10px; margin-bottom: 20px;">
+  <img src="1.png" alt="Rock Paper Scissors Preview" width="100%" style="border-radius: 10px; margin-bottom: 20px;">
 </div>
 
 
@@ -11,14 +11,14 @@ A modern, high-energy twist on the classic game! Built with vanilla HTML, CSS, a
 ## ✨ Features
 
 - **🏆 Best of 3 Series**: Play a full match! The first to win 3 decisive rounds takes the crown.
-- **🎨 Neon Cyberpunk Design**: Sleek glassmorphism effects, vibrant colors, and 3D-style icons.
+- **🎨 Clean & Modern Design**: Minimalist aesthetic with big, bold typography and flat illustrations.
 - **⚡ Dynamic Animations**: 
     - "Shake, Shake, Shoot!" hand animations.
     - "Pop-in" Victory/Defeat text.
     - 🎉 **Confetti Celebration** for the series winner!
-- **🤖 Smart CPU**: Logic tuned to reduce repetitive draws for a faster-paced game.
-- **📱 Fully Responsive**: Looks great on desktop and mobile.
-- **🔄 Instant Replay**: "Play Again" and manual reset options for endless fun.
+- **🤖 Smart CPU**: Logic tuned to reduce repetitive draws (90% redraw chance) for a faster, more decisive game.
+- **📱 Fully Responsive**: Optimized layouts for both desktop and mobile screens.
+- **🔄 Instant Replay**: "Next Round" progress tracking and "New Game" reset options.
 
 ## 🛠️ Tech Stack
 
@@ -33,12 +33,12 @@ A modern, high-energy twist on the classic game! Built with vanilla HTML, CSS, a
 3.  **Track the score**: The "YOU vs CPU" scoreboard updates instantly.
 4.  **Win the Series**: Be the first to win **3 rounds** to trigger the Victory Confetti!
 
-## 📦 Improvements
+## 📦 Recent Updates
 
-- [x] Result revealed after 3 shakes (1.3s delay).
-- [x] "Play Again" button hidden during animations for a seamless look.
-- [x] Draw probability reduced for more decisive gameplay.
-- [x] Auto-reset logic replaced with a definitive "Series Over" state.
+- [x] **Match Logic**: Updated to "first to 3 wins" (draws don't count).
+- [x] **Visuals**: Hands reset cleanly every round; Paper/Scissors icons scaled for balance.
+- [x] **UI Polish**: Mobile-responsive layout, removed floating pills, and cleaner text alignment.
+- [x] **Bug Fixes**: Fixed confetti persistence and navigation/reset timing.
 
 ## 👨‍💻 Author
 
