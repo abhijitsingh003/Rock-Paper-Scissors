@@ -167,7 +167,7 @@ function playRound(playerChoice) {
 
         updateScoreBoard();
         saveStats();
-    }, 900); // 900ms: Reveal slightly earlier for snap
+    }, 1200); // 1.2s: Full 3rd shake (Increase by 0.3s)
 }
 
 function determineWinner(p, c) {
