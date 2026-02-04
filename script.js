@@ -26,14 +26,11 @@ Object.values(assets).forEach(asset => {
     img.src = asset.img;
 });
 
-const VERSION = "1.6 - Optimized";
-
 function init() {
     loadStats();
     updateScoreBoard();
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
-    console.log("RPS Game Initialized - Version:", VERSION);
 }
 
 function getComputerChoice(playerChoice) {

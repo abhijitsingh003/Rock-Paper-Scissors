@@ -408,18 +408,6 @@ h2 {
     transform: scaleX(-1) rotate(90deg) scale(1.2);
 }
 
-/* Back Button */
-.back-btn {
-    position: absolute;
-    top: 2rem;
-    left: 2rem;
-    font-size: 1.5rem;
-    cursor: pointer;
-    background: none;
-    border: none;
-    text-decoration: underline;
-    color: blue;
-}
 
 .series-score {
     display: inline;
