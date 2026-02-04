@@ -11,11 +11,9 @@
 <body>
     <div class="app-container">
 
-        <!-- Header is dynamic depending on phase, or simpler: -->
-        <!-- We will put the specific 'Choose:' text inside the phase containers -->
+
 
         <main class="game-area">
-            <!-- Phase 1: Selection -->
             <!-- Phase 1: Selection -->
             <div id="selection-phase" class="selection-phase">
                 <div class="header-score">
@@ -64,11 +62,15 @@
 
                 <div class="duel-container">
                     <div class="hand-display player-hand">
-                        <img id="player-hand-img" src="hand_rock.png" alt="Player Hand">
+                        <div class="hand-anim">
+                            <img id="player-hand-img" src="hand_rock.png" alt="Player Hand">
+                        </div>
                     </div>
 
                     <div class="hand-display cpu-hand">
-                        <img id="cpu-hand-img" src="hand_rock.png" alt="CPU Hand">
+                        <div class="hand-anim">
+                            <img id="cpu-hand-img" src="hand_rock.png" alt="CPU Hand">
+                        </div>
                     </div>
                 </div>
 

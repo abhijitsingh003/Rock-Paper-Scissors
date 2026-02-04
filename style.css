@@ -66,7 +66,6 @@ h2 {
 }
 
 /* Selection Phase */
-/* Selection Phase */
 .selection-phase {
     display: flex;
     flex-direction: column;
@@ -272,7 +271,6 @@ h2 {
 
 
 /* Footer / Scoreboard */
-/* Footer removed as requested */
 
 .play-again-btn {
     margin-top: 1rem;
