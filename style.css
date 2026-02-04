@@ -317,14 +317,13 @@ h2 {
 
 /* Shake Animation for hands */
 .shake-left {
-    animation: shakeLeft 0.5s ease-in-out 3;
-    /* 0.5s * 3 = 1.5s Total Duration */
+    animation: shakeLeft 0.5s ease-in-out infinite;
     transform-origin: 20% 80%;
     /* Pivot around wrist */
 }
 
 .shake-right {
-    animation: shakeRight 0.5s ease-in-out 3;
+    animation: shakeRight 0.5s ease-in-out infinite;
     transform-origin: 80% 80%;
 }
 

@@ -20,6 +20,12 @@ const assets = {
     'scissors': { img: 'hand_scissors.png', label: 'Scissors' }
 };
 
+// Preload images to prevent flicker
+Object.values(assets).forEach(asset => {
+    const img = new Image();
+    img.src = asset.img;
+});
+
 const VERSION = "1.6 - Optimized";
 
 function init() {
@@ -59,10 +65,11 @@ function playRound(playerChoice) {
     const cpuChoice = getComputerChoice(playerChoice);
     const result = determineWinner(playerChoice, cpuChoice);
 
-    // Animation Delay: Trigger BEFORE animation ends (1.5s) to capture "mid-shake" state for smooth morph.
+    // Animation Delay: 1.5s for 3 full shakes.
+    // CSS is now infinite, so we manually stop it here. This prevents the "snap to stop" glitch.
     setTimeout(() => {
         revealResult(playerChoice, cpuChoice, result);
-    }, 1400);
+    }, 1500);
 }
 
 function resetHandsAnimation() {
