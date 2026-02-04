@@ -59,10 +59,10 @@ function playRound(playerChoice) {
     const cpuChoice = getComputerChoice(playerChoice);
     const result = determineWinner(playerChoice, cpuChoice);
 
-    // Animation Delay
+    // Animation Delay: Trigger BEFORE animation ends (1.5s) to capture "mid-shake" state for smooth morph.
     setTimeout(() => {
         revealResult(playerChoice, cpuChoice, result);
-    }, 1200);
+    }, 1400);
 }
 
 function resetHandsAnimation() {
@@ -100,6 +100,9 @@ function revealResult(playerChoice, cpuChoice, result) {
 
         cpuHandImg.src = assets[cpuChoice].img;
         cpuHandImg.dataset.choice = cpuChoice;
+
+        // Force Reflow (Safari Fix: Ensures the new image is painted invisible before we show it)
+        void playerHandImg.offsetWidth;
 
         // 3. Release and Show
         requestAnimationFrame(() => {
